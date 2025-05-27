@@ -120,7 +120,7 @@ def execute_payload(payload: bytearray) -> bool:
                         elif obis_code == [1,96,98,128,0,255]:
                             #instant profile
                             cos = DecodeDLMS(data)
-                            if cos.DataArray() and len(cos.DataArray()[0].DataStructure()) == 14:
+                            if cos.DataArray() and len(cos.DataArray()[0].DataStructure()) == 23:
                                 s = cos.DataArray()[0].DataStructure()
                                 meter_time = s[0].DataOctetString().tgl.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -169,7 +169,7 @@ def execute_payload(payload: bytearray) -> bool:
                                     s[19].DataLongUnsigned()/100,
                                     s[20].DataLongUnsigned()/10,
                                     s[21].DataLongUnsigned()/10,
-                                    s[23].DataLongUnsigned()/1000
+                                    s[22].DataLongUnsigned()/1000
                                 )
 
                                 del_data = (
